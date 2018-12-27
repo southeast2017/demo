@@ -6,5 +6,28 @@
 </head>
 <body>
     hello world!
+    <script>
+        function Person(name) {
+            this.name = name;
+            this.age = name;
+        }
+
+        Person.prototype.form = function () {
+            console.log("hello world");
+        }
+
+//        one.age = 10;
+
+        function SubPerson() {
+
+        }
+        SubPerson.prototype = new Person();
+
+        var one = new SubPerson();
+        one.name = 10;
+        one.form();
+        console.log(one.name);
+
+    </script>
 </body>
 </html>
