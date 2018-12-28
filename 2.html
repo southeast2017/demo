@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            #dom {
+                width: 110px;
+                height:110px;
+                background-color: #000;
+                color: #f00;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="dom">asdfasdf</div>
+        <script>
+//            function assignHandler() {
+//                var element = document.getElementById('dom');
+//                var id = element.id;
+//
+//                element.onclick = function () {
+//                    console.log(id);
+//                }
+//                element = null;
+//            }
+//            assignHandler();
+
+//            (function () {
+//               var name = '';
+//
+//               Person = function (value) {
+//                   name = value;
+//               }
+//
+//               Person.prototype.getName = function () {
+//                   return name;
+//               }
+//               Person.prototype.setName = function (value) {
+//                   name = value;
+//               }
+//           })();
+//
+//            var person1 = new Person('Tom');
+//            console.log(person1.getName());
+
+//        var singleton = function () {
+//
+//            var privateVariable = 10;
+//
+//            function privateFunction() {
+//                return false;
+//            }
+//
+//            return {
+//                publicProperty: true,
+//
+//                publicMethod: function () {
+//                    privateVariable++;
+//                    return privateFunction();
+//                }
+//            }
+//        }();
+//
+//            console.log(singleton.publicMethod());
+
+//            var singleton = function () {
+//                var privateVariable = 10;
+//
+//                function privateFunction() {
+//                    return false;
+//                }
+//
+//                var object = new CustomType();
+//
+//                object.publicProperty = true;
+//
+//                object.publicMethod = function () {
+//                    privateVariable++;
+//                    return privateFunction();
+//                };
+//
+//                return object;
+//            }();
+
+
+            // 1)
+//            var colors = new Array();
+//            var mColors = new Array(20); // array length is 20
+//            var sColors = new Array("red", 'black', 'green');
+//            console.log(colors);
+//            console.log(mColors);
+//            console.log(sColors);
+
+            // 2)
+//            var times = Array(3); // array length is 3
+//            var names = Array("Greg");
+//            console.log(times);
+//            console.log(names);
+
+            // 3)
+//            var options = [,,,,]; // array length is 4  don't do it, it's foolish!
+//            console.log(options);
+
+//            var obj = {
+//                name: 'good',
+//                age: 10
+//            };
+//            obj.__proto__ = {
+//                _year: 2020,
+//                name: 'Tom'
+//            };
+//            console.log(obj);
+//            console.log(obj.__proto__);
+//            console.log(obj.hasOwnProperty('age')); // hasOwnProperty 判断属性是否是构造函数的属性，不是原型对象的属性
+//            console.log(obj.hasOwnProperty('_year')); // false
+//            console.log(obj.name); // 'good'
+//            console.log(obj.hasOwnProperty('name')); // true
+
+//            var number = 10;
+//            var str1 = number.toString();
+//            console.log(str1);
+//            console.log(typeof str1);
+
+            // Array
+//            var mFilter = new Array(2);
+//            console.log(mFilter);
+//            console.log(mFilter.__proto__);
+
+//            var mArray = new Array();
+//            console.log(mArray);
+//
+//            for (var i = 0; i < 10; ++i)
+//                mArray.push(i);
+//            console.log(mArray);
+//            console.log(Array.isArray(mArray)); // 用来确认mArray是不是数组
+//
+//            var colors = ["red", 'black', 'yellow'];
+//            console.log(colors.valueOf());
+
+//            var person1 = {
+//                toLocalString: function () {
+//                    return "Nikolaos";
+//                },
+//                toString: function() {
+//                    return "Nicholas";
+//                }
+//            };
+//            var person2 = {
+//                toLocalString: function () {
+//                    return "Grid";
+//                },
+//                toString: function () {
+//                    return "Greg";
+//                }
+//            }
+//
+//            var people = [person1, person2];
+//            console.log(people);
+//            console.log(people.toString());
+//
+
+//            var colors = ["red", "green", "blue"];
+//            console.log(colors.join(","));
+//            console.log(colors.join("||"));
+//            console.log(colors);
+
+//            var colors = new Array();
+//            var count = colors.push("red", "green");
+//            console.log(count);
+//            console.log(colors);
+//
+//            var item = colors.pop();
+//            console.log(item);
+//            console.log(colors.length);
+
+//            var colors = ["red", 'black', 'green'];
+//            var item = colors.shift(); // get the first item // 按照队列的方式，第一个元素出队
+//            console.log(item);
+//            console.log(colors);
+//
+//            colors.unshift("south"); // add the item on the head // 从队列的头部添加元素
+//            console.log(colors);
+
+            // 数组合并
+//            var colors = ["red", "green", "blue"];
+//            var colors2 = colors.concat("yellow", ["black", "brown"]);
+//
+//            console.log(colors);
+//            console.log(colors2);
+
+            // slice 可以根据给定数组来创建新的数组 第一参数： 起始位置 第二个参数： 结束位置
+//            var colors = ["red", "green", "blue", "yellow", "purple"];
+//            var colors2 = colors.slice(1); // 从第一个位置到最后一个位置的数据
+//            var colors2 = colors.slice(1); // 从第一个位置到最后一个位置的数据
+//            var colors3 = colors.slice(1, 4); // 从第一个参数到第四个参数
+//            console.log(colors2);
+//            console.log(colors3);
+//            console.log(colors);
+
+//            // splice 数组操作的东东
+//            var colors = ["red", "green", "blue"];
+//            // 删除：  参数1： 起始位置 参数2： 要删除数量
+//            var removed = colors.splice(0, 1); // 删除第一项
+//            console.log(removed); // red
+//            console.log(colors); // ["green", "blue"]
+//
+//            // 插入：　参数１：　起始位置　参数２：　要删除的数量 参数n: 要插入的项
+//            removed = colors.splice(1, 0, "yellow", "orange");
+//            console.log(colors);
+//
+//            // 替换:  参数同上
+//            removed = colors.splice(2, 1, "red", "orange");
+//            console.log(removed);
+//            console.log(colors);
+
+//            var number = [1, 2, 3, 4, 5, 6];
+            // indexOf 从头开始查找
+            // lastIndexOf 从末尾开始查找
+
+//            var numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+//
+//            //　every 用于查询数组中的项是否满足某个条件
+//            //  every 对数组中的每一项运行给定函数
+//            var everyResult = numbers.every(function (item, index, array) {
+//                return (item < 6);
+//            });
+//
+//            //　some　是数组中某一项满足某个条件而返回一个true
+//            var someResult = numbers.some(function (item, index, array) {
+//                return (item > 3);
+//            });
+//
+//            // 会创建一个新的数组，新数组内的数据都满足过滤条件
+//            var fileterResult = numbers.filter(function (item, index, array) {
+//                return (item > 2);
+//            });
+//
+//            var mapResult = numbers.map(function (item, index, array) {
+//                return item * 2;
+//            });
+//
+//            numbers.forEach(function (item, index, array) {
+//
+//            });
+//            console.log(everyResult); // true
+//            console.log(someResult);  // true
+//            console.log(fileterResult); // [3, 4, 5, 4, 3];
+//            console.log(mapResult); // [2, 4, 6, 8, 10, 8, 6, 4, 2];
+//            console.log(numbers);
+
+//            var values = [1, 2, 3, 4, 5];
+//            //　归并
+//            // reduce的 prev：第一个数据，　cur：　第二个数据
+//
+//            // 第一次执行：　prev: 1 cur: 2
+//            // 第二次执行：　prev: 3 cur: 3
+//            // 第三次执行：　prev: 6 cur: 4
+//            var sum = values.reduce(function (prev, cur, index, array) {
+//                return prev + cur;
+//            });
+//            console.log(sum);
+//
+//            reduceRight　与 reduce　的区别在于从哪一头开始堆叠
+//            注：　reduce的函数的参数是四个，与every, some, filter, map, forEach 的三个参数还是有所区别的
+
+
+
+        </script>
+    </body>
+</html>
