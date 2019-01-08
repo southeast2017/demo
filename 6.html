@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <script>
+            // JSON与js的对象字面量相比，JSON对象有两个地方不一样
+            // JSON没有声明变量的概念
+            // JSON没有末尾的分号
+
+            // JS中的对象
+            var person = {
+                name: "Nicholas",
+                age: 29
+            };
+
+            // JSON的对象
+            // {
+            //     "name": "Nicholas",
+            //     "age": 29
+            // }
+
+            var book = {
+                title: "Professional JavaScript",
+                authors: [
+                    "Nicholas C. Zakas"
+                ],
+                edition: 3,
+                year: 2011
+            };
+            // 将js对象转换成json格式
+            var jsonText = JSON.stringify(book);
+            console.log(jsonText);
+
+            // 将json数据转换成JS的对象
+            var bookCopy = JSON.parse(jsonText);
+            console.log(bookCopy);
+
+            // 过滤结果（只保留过滤的内容）
+            var jsonText1 = JSON.stringify(book, ["title", "edition"]);
+            console.log(jsonText1);
+
+            var jsonText2 = JSON.stringify(book, function (key, value) {
+                switch (key) {
+                    case "authors":
+                        return value.join(",");
+                    case "year":
+                        return 5000;
+                    case "edition":
+                        return undefined;
+                    default:
+                        return value;
+                }
+            });
+            console.log(jsonText2);
+
+            // 字符串缩进
+            var jsonText3 = JSON.stringify(book, null, 4);
+            console.log(jsonText3);
+
+            // toJSON()可以作为一个过滤器的补充来使用
+
+            // 序列化顺序
+            // （1）首先如果存在toJSON则首先调用这个
+            // 根据（1）返回的数据，再通过过滤器过滤结果
+            // 根据（2）中的结果，再根据第3个参数进行格式序列化
+            var book1 = {
+                title: "Professional JavaScript",
+                authors: [
+                    "Nicholas C. Zakas"
+                ],
+                edition: 3,
+                year: 2011,
+                toJSON: function () {
+                    return this.title;
+                }
+            };
+
+            var jsonBook1 = JSON.stringify(book1);
+            console.log(jsonBook1);
+
+
+            // 解析选项
+            var book2 = {
+                title: "Professional JavaScript",
+                authors: [
+                    "Nicholas C. Zakas"
+                ],
+                edition: 3,
+                year: 2011,
+                releaseDate: new Date(2011, 11, 1)
+            };
+            var jsonBook2 = JSON.stringify(book2);
+            console.log(jsonBook2);
+
+            var bookCopy2 = JSON.parse(jsonBook2, function (key, value) {
+                if (key == "releaseDate") {
+                    return new Date(value);
+                } else {
+                    return value;
+                }
+            });
+        </script>
+    </body>
+</html>
