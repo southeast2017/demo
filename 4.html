@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <script>
+            // <!--8.1.0 window对象-->
+            let age = 29;
+            function sayAge() {
+                console.log(age);
+            }
+            sayAge();
+            window.sayAge();
+
+            // 获取浏览器窗口在电脑屏幕上的位置
+            // 左边距
+            var leftPos = (typeof window.screenLeft == "number") ?
+                            window.screenLeft : window.screenX;
+            // 右边距
+            var topPos = (typeof window.screenTop == "number") ?
+                            window.screenTop : window.screenY;
+
+            console.log(leftPos);
+            console.log(topPos);
+
+            // 注：这两个方法在很多浏览器里面都是禁用的
+            (function getDo() {
+                // 将浏览器窗口移动到新到位置(0,0)
+                window.moveTo(0,0);
+
+                // 将浏览器窗口左移50像素
+                window.moveBy(-50, 0);
+            })();
+
+            <!--8.1.4 窗口大小-->
+            // outerHeight  // 返回浏览器窗口本身的高度
+            // outerWidth   // 返回浏览器窗口本身的宽度
+            // innerHeight  // 返回浏览器视图区域的高度（浏览器窗口高度减掉边框）
+            // innerWidth   // 返回浏览器视图区域的宽度
+            // 注：在谷歌浏览器中，inner和outer的值是一样的
+
+            console.log(window.outerHeight);
+            console.log(window.outerWidth);
+            console.log(window.innerHeight);
+            console.log(window.innerWidth);
+
+            // 在标准模式下
+            // 在document.documentElement.clientWidth 和 document.documentElement.clientHeight
+            // 中保存了页面的视口（视图区域）信息
+
+            console.log(document.documentElement.clientHeight);
+            console.log(document.documentElement.clientWidth);
+
+            // 在混杂模式下
+            // document.body.clientWidth 和 document.body.clientHeight
+            console.log(document.body.clientHeight);
+            console.log(document.body.clientWidth);
+
+            console.log(document.compatMode);
+
+            // 对于移动设备
+            // window.innerWidth 和 window.innerHeight 保存着手机的视口
+
+            // 调整浏览器的大小（一般也是禁用的）
+            // 将浏览调整到100 * 100 大小
+            window.resizeTo(100, 100);
+
+            // 将浏览器调整到200 * 150 大小
+            // 接收新窗口与原窗口的宽度和高度之差
+            window.resizeBy(100, 50);
+
+            <!--8.1.5 导航和打开窗口-->
+            // window.open(url, 窗口目标，特性字符串，布尔值)
+            // window.open("http://www.baidu.com");
+
+            // 弹出窗口
+            var wrox = window.open("http://www.baidu.com", "baidu",
+                "height=400, width=400, top=10, left=10, resizable=yes");
+            wrox.resizeTo(500, 500);
+            wrox.moveTo(0,0);
+            wrox.opener = null;
+            wrox.close();
+            console.log(wrox.closed);
+
+            <!--8.1.6 间歇调用和超时调用-->
+            // 超时调用
+            var timeoutId = setTimeout(function () {
+                console.log("hello, world");
+            }, 1000);
+
+            clearTimeout(timeoutId); // 取消超时调用
+
+            for (var i = 0; i < 5; i++) {
+                setTimeout(function () {
+                    console.log(i);
+                }, 1000);
+            }
+            console.log(i);
+
+            // 间歇调用（与超时调用类似，只不过会按照制定的时间间隔重复执行代码）
+            function printDemo() {
+                console.log("hello world");
+            }
+
+            var circleTime = setInterval(printDemo, 1000);
+            clearInterval(circleTime);
+
+            <!--8.1.7 系统对话框-->
+            // confirm("Are you sure?");
+            // alert("hello world");
+            // prompt("What's your name?");
+            // window.print(); // 显示打印界面
+        </script>
+        <script>
+            <!--8.2 location对象-->
+            // 它既是window对象的属性，又是document对象的属性
+            // window.location 和 document.location 引用的是同一个对象
+            // location 保存当前文档的信息，还可以将URL解析为独立的片段
+
+            // hash "#contents" 返回URL中的hash
+            // host "www.wrox.com:80" 返回服务器名称和端口号
+            // hostname "www.wrox.com" 返回不带端口号的服务器名称
+            // href "http:/www.wrox.com" 返回当前加载页面的完整URL,而location的
+            //     toString()方法也返回这个值
+            // pathname "/WileyCDA" 返回URL中的目录和文件名
+            // port "8080" 返回URL中指定的端口号
+            // protocol "http:" 返回页面使用的协议
+            // search "?q=javascript" 返回URL的查询字符串,这个字符串以问号开头
+            console.log(location.href);
+            console.log(location.search);
+            console.log(location.search.substring(1));
+
+            <!--8.2.1 查询字符串参数-->
+            function getQueryStringArgs() {
+                var qs = (location.search.length > 0 ? location.search.substring(1) : ""),
+                    args = {},
+                    items = qs.length ? qs.split("&") : [],
+                    item = null,
+                    name = null,
+                    value = null,
+                    i = 0,
+                    len = items.length;
+
+                for (i = 0; i < len; i++) {
+                    item = items[i].split("=");
+                    name = decodeURIComponent(item[0]);
+                    value = decodeURIComponent(item[1]);
+
+                    if (name.length) {
+                        args[name] = value;
+                    }
+                }
+
+                return args;
+            }
+            var gg = getQueryStringArgs();
+            console.log(gg["_ijt"]);
+
+            <!--8.2.2 位置操作-->
+            // window.location = "http://www.baidu.com";
+            // location.assign("http://www.baidu.com");
+            // 最常用的设置是location.href
+
+            // 假设初始URL为 "http://www.baidu.com/south"
+
+            // console.log(location);
+            // location.hash = "#section1";
+            // location.search = "?q=javascript";
+            // location.hostname = "www.baidu.com";
+            // location.pathname = "mydir";
+            // location.port = 8080;
+            // console.log(location);
+            // location.reload();
+            //     location.reload(true);
+        </script>
+        <script>
+            <!--8.3 navigator对象-->
+            // 常用于检测显示网页的浏览器类型
+
+            <!--8.3.1 检测插件-->
+            // 检测浏览器中是否安装了特定的插件
+            function hasPlugin(name) {
+                name = name.toLowerCase();
+                for (var i = 0; i < navigator.plugins.length; ++i) {
+                    if (navigator.plugins[i].name.toLowerCase().indexOf(name) > -1) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            console.log(hasPlugin("Flash"));
+        </script>
+        <script>
+            <!--8.5 history对象-->
+            // 后退一页
+            history.go(-1);
+            // 前进一页
+            history.go(1);
+            // 前进两页
+            history.go(2);
+
+            // 跳转到最近的"wrox.com"
+            history.go("wrox.com");
+
+            // 后退一页
+            history.back();
+
+            // 前进一页
+            history.forward();
+        </script>
+    </body>
+</html>
