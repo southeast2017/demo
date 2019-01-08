@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+    <div id="div0" name="_div">hello world</div>
+    <div id="div1" name="_div1">1</div>
+    <div id="div2" name="_div1">2</div>
+    <div id="myDiv" class="bd" title="body text" lang="en" dir="ltr"></div>
+        <script>
+            <!--Document-->
+            // document对象是window对象的一个属性
+
+            // document.documentElement 与
+            // document.childNodes[0] 与
+            // document.firstChild 的值是相同的
+            var html = document.documentElement;
+            console.log(document.documentElement);
+
+            // document.body直指<body>元素
+            console.log(document.body);
+
+            // 获取对<!DOCTYPE>的引用
+            console.log(document.doctype);
+
+            // 获取title的内容
+            console.log(document.title);
+            // 设置文档标题
+            document.title = "Demo";
+
+            console.log(document.URL);
+            console.log(location.href);
+
+            // 获取域名
+            console.log(document.domain);
+            console.log(location.hostname);
+
+            // 取得来源页面的URL
+            // console.log(document.referrer);
+
+            var div = document.getElementById("div0");
+            console.log(div);
+
+            var divs = document.getElementsByTagName("div");
+            console.log(divs);
+
+            var myDiv = divs["_div1"];
+            console.log(myDiv);
+
+            document.write("<script>console.log('hello world')<\/script>");
+
+            var mDiv = document.getElementById("div0");
+            console.log(mDiv.tagName);
+            console.log(mDiv.nodeName);
+
+            var mmDiv = document.getElementById("myDiv");
+            console.log(mmDiv.id);
+            console.log(mmDiv.className);
+            console.log(mmDiv.title);
+            console.log(mmDiv.lang);
+            console.log(mmDiv.dir);
+
+        </script>
+
+    </body>
+</html>
